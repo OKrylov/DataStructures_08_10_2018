@@ -1,7 +1,13 @@
+import java.util.Arrays;
+
 public class SortedArrayImpl extends ArrayImpl {
 
     public SortedArrayImpl(int maxSize) {
         super(maxSize);
+    }
+
+    protected SortedArrayImpl(int[] data, int size) {
+        super(data, size);
     }
 
     @Override
@@ -59,5 +65,10 @@ public class SortedArrayImpl extends ArrayImpl {
         }
 
         return -1;
+    }
+
+    @Override
+    public Array copy() {
+        return new SortedArrayImpl(Arrays.copyOf(data, data.length), size);
     }
 }

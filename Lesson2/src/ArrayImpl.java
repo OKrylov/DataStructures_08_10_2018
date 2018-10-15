@@ -10,6 +10,11 @@ public class ArrayImpl implements Array {
         this.size = 0;
     }
 
+    protected ArrayImpl(int[] data, int size) {
+        this.data = data;
+        this.size = size;
+    }
+
     @Override
     public boolean add(int value) {
         if (isFull())
@@ -34,11 +39,11 @@ public class ArrayImpl implements Array {
     public boolean removeByIndex(int index) {
         if (index < 0 || index >= size)
             return false;
-        
+
         for (int i = index; i < size - 1; i++) {
             data[i] = data[i + 1];
         }
-        
+
         size--;
         return true;
     }
@@ -69,6 +74,7 @@ public class ArrayImpl implements Array {
 
     /**
      * O(n)
+     *
      * @param value
      * @return
      */
@@ -93,6 +99,11 @@ public class ArrayImpl implements Array {
     }
 
     @Override
+    public Array copy() {
+        return new ArrayImpl(Arrays.copyOf(data, data.length), size);
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
@@ -104,5 +115,10 @@ public class ArrayImpl implements Array {
         }
         sb.append("}");
         return sb.toString();
+    }
+
+    @Override
+    public int[] getData() {
+        return data;
     }
 }

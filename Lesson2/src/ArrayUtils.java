@@ -1,7 +1,7 @@
 public class ArrayUtils {
 
     //O(n^2) - сравнений
-    //O(n^2) - перестановок
+    //O(n^2) - перестановок << O (n * log n)
     public static void sortBubble(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {

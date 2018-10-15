@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main2 {
 
@@ -46,6 +48,8 @@ public class Main2 {
         //size = 5 | {1, 2, 3, 4, 5} | {1, 2, 3, 4, 5, 0, 0, 0, 0, 0}
 
         //
+
+
 
     }
 }

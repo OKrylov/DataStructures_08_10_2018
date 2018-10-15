@@ -14,4 +14,8 @@ public interface Array {
     boolean isEmpty();
 
     int getSize();
+
+    Array copy();
+
+    int[] getData();
 }
