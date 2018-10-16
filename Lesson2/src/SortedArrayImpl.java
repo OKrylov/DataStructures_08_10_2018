@@ -50,14 +50,14 @@ public class SortedArrayImpl extends ArrayImpl {
 
         int mid;
 
-        while (low < high) {
+        while (low <= high) {
             mid = (low + high) / 2;
             if (value == data[mid]) {
                 return mid;
             }
             else {
                 if (value < data[mid]) {
-                    high = mid;
+                    high = mid - 1;
                 } else {
                     low = mid + 1;
                 }
