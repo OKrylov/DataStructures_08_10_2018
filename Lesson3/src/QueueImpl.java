@@ -5,8 +5,8 @@ public class QueueImpl implements Queue {
     protected int[] data;
     protected int size;
 
-    private int front;
-    private int rear;
+    protected int front;
+    protected int rear;
 
     public QueueImpl(int maxSize) {
         this.data = new int[maxSize];
