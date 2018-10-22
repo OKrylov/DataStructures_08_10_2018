@@ -1,4 +1,4 @@
-public interface LinkedList {
+public interface LinkedList extends Iterable<Integer> {
 
     void add(int value);
 
@@ -15,4 +15,6 @@ public interface LinkedList {
     void display();
 
     Link getFirstElement();
+
+    void setFirstElement(Link firstElement);
 }
