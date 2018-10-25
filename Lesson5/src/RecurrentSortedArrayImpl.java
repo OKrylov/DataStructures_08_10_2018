@@ -6,7 +6,7 @@ public class RecurrentSortedArrayImpl extends SortedArrayImpl {
 
     @Override
     protected int indexOf(int value) {
-        return super.indexOf(value);
+        return indexOf(value, 0, size - 1);
     }
 
     private int indexOf(int value, int low, int high) {
