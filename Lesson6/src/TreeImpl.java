@@ -5,9 +5,15 @@ public class TreeImpl implements Tree {
     private Node root;
 
     private int size;
+    private int maxLevel;
 
     public TreeImpl() {
+        this(0);
+    }
+
+    public TreeImpl(int maxLevel) {
         this.size = 0;
+        this.maxLevel = maxLevel;
     }
 
     @Override
@@ -30,6 +36,11 @@ public class TreeImpl implements Tree {
 //            }
 
             current = current.getChildByKey(value.getId());
+        }
+
+        int level = height(parent) + 1;
+        if (level > maxLevel) {
+            return;
         }
 
         if ( parent.isLeftChild(value.getId()) ) {
@@ -261,5 +272,21 @@ public class TreeImpl implements Tree {
             root.display();
             inOrder(root.getRightChild());
         }
+    }
+
+    @Override
+    public boolean isBalanced() {
+        return isBalanced(root);
+    }
+
+    private boolean isBalanced(Node node) {
+        return (node == null) ||
+                isBalanced(node.getLeftChild()) &&
+                        isBalanced(node.getRightChild()) &&
+                        Math.abs(height(node.getLeftChild()) - height(node.getRightChild())) <= 1;
+    }
+
+    private int height(Node node) {
+        return node == null ? 0 : 1 + Math.max(height(node.getLeftChild()), height(node.getRightChild()));
     }
 }
