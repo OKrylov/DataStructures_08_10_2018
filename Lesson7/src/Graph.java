@@ -116,28 +116,45 @@ public class Graph {
 
     }
 
-//    public void bfs(String startLabel) {
-//        Vertex vertex = findVertex(startLabel);
-//        if (vertex == null) {
-//            throw new IllegalArgumentException("Invalid startLabel: " + startLabel);
-//        }
-//
-//        Queue<Vertex> queue = new ArrayDeque();
-//
-//        visitVertex(vertex, queue);
-//
-//        while ( !queue.isEmpty()) {
-//            vertex = getAdjUnvisitedVertex(queue.peek());
-//            if (vertex == null) {
-//                queue.remove();
-//            }
-//            else {
-//                visitVertex(vertex, queue);
-//            }
-//        }
-//
-//        clearVertexes();
-//    }
+    public Stack<String> findShortPathViaBfs(String startLabel, String finishLabel) {
+        Vertex vertex = findVertex(startLabel);
+        if (vertex == null) {
+            throw new IllegalArgumentException("Invalid startLabel: " + startLabel);
+        }
+
+        Queue<Vertex> queue = new ArrayDeque();
+
+        visitVertex(vertex, queue);
+
+        while ( !queue.isEmpty()) {
+            vertex = getAdjUnvisitedVertex(queue.peek());
+            if (vertex == null) {
+                queue.remove();
+            }
+            else {
+                visitVertex(vertex, queue);
+                vertex.setPreviousVertex(queue.peek());
+                if (vertex.getLabel().equals(finishLabel)) {
+                    return buildPath(vertex);
+                }
+            }
+        }
+
+        clearVertexes();
+        return null;
+    }
+
+    private Stack<String> buildPath(Vertex vertex) {
+        Stack<String> stack = new Stack();
+        Vertex current = vertex;
+        while (current != null) {
+            stack.push(current.getLabel());
+            current = current.getPreviousVertex();
+        }
+
+        clearVertexes();
+        return stack;
+    }
 
     private void clearVertexes() {
         for (int i = 0; i < size; i++) {
